@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using firstWebApp.Models;
@@ -10,7 +11,7 @@ namespace firstWebApp.Pages
 {
     public class StudentsModel : PageModel
     {
-        public string Message { get; set; } = "In page model: ";
+        public string Message { get; set; } = "Today is: ";
 
         // public Student Sicco = new Student("Sicco", 1);
         
@@ -19,7 +20,7 @@ namespace firstWebApp.Pages
         
         //constructor - assigns the result of the "GetStudentList" to the "Students" property
         public StudentsModel()
-        {
+        {   
             Students = GetStudentList();
         }
         
@@ -40,7 +41,7 @@ namespace firstWebApp.Pages
           Student.IdCounter = 0;
           for (int i = 0; i < studentNames.Count; i++)
           {
-              students.Add(new Student(studentNames.ElementAt(i),i+1));
+              students.Add(new Student(studentNames.ElementAt(i),i%2 == 0 ? 1 : 2));
           }
           return students;
       }

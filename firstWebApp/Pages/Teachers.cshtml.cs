@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 namespace firstWebApp.Pages
 {
     public class TeachersModel : PageModel
-    {   public string Message { get; set; } = "In page model: ";
+    {   public string Message { get; set; } = "Today is: ";
 
         //property that contains the list of the teachers + getter/setter
         public List<Teacher> Teachers { get; set; }
@@ -30,14 +30,14 @@ namespace firstWebApp.Pages
         {  
             //creates list of the names
             List<string> teacherNames = new List<string>()
-                {"Mrs.Sigyn", "Mr.Loki", "Mrs.Freya", "Mr.Thor"};
+                {"Mr.Loki", "Mrs.Freya"};
        
             //creates list of teacher objects
             List<Teacher> teachers = new List<Teacher>();
             Teacher.IdCounter = 0;
             for (int i = 0; i < teacherNames.Count; i++)
             {
-                teachers.Add(new Teacher(teacherNames.ElementAt(i),i+1));
+                teachers.Add(new Teacher(teacherNames.ElementAt(i),i%2 == 0 ? 1 : 2));
             }
             return teachers;
         }

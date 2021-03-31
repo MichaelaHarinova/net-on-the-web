@@ -1,8 +1,11 @@
+using System.Collections.Generic;
+using firstWebApp.Pages;
+
 namespace firstWebApp.Models
 {
     public class Classroom
     {
-        public static int IdCounter = 0;
+        public static int IdCounter = 1;
         private int _Id;
         public int Id
         {
@@ -17,26 +20,59 @@ namespace firstWebApp.Models
             set { _Name = value; }
         }
 
-        private int _TeacherId;
-        public int TeacherId
+        private List<Teacher> _teachers;
+        public List<Teacher> teachers
         {
-            get { return _TeacherId; }
-            set { _TeacherId = value; }
+            get { return _teachers; }
+            set { _teachers = value; }
         }
 
-        private int _StudentId;
-        public int StudentId
+        private List<Student> _students;
+        public List<Student> students
         {
-            get { return _StudentId; }
-            set { _StudentId = value; }
+            get { return _students; }
+            set { _students = value; }
         }
-        public Classroom(string _Name, int _TeacherId)
+
+        public string getAllStudentNames()
         {
-            this._Id = IdCounter;
-            IdCounter++;
-            this._Name = _Name;
-            this._TeacherId = _TeacherId;
-         
+            string studentNames = "";
+            foreach (var student in students)
+            {
+                if (studentNames.Equals(""))
+                {
+                    studentNames = student.Name;
+                }
+                else
+                {
+                    studentNames = studentNames + ", " + student.Name;
+                }
+            }
+            return studentNames;
+        }
+        public string getAllTeacherNames()
+        {
+            string teacherNames = "";
+            foreach (var teacher in teachers)
+            {
+                if (teacherNames.Length == 0)
+                {
+                    teacherNames = teacher.Name;
+                }
+                else
+                {
+                    teacherNames = teacherNames + ", " + teacher.Name;
+                }
+            }
+            return teacherNames;
+        }
+
+        public Classroom(string Name,List<Teacher> teachers,List<Student> students )
+        {
+            _Id = IdCounter++;
+            _Name = Name;
+            _teachers = teachers;
+            _students = students;
         }
     }
 }

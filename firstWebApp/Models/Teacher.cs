@@ -24,12 +24,12 @@ namespace firstWebApp.Models
             set { _ClassId = value; }
         }
 
-        public Teacher(string _Name, int _ClassId)
+        public Teacher(string Name, int ClassId)
         {
-            this._Id = IdCounter;
+            _Id = IdCounter;
             IdCounter++;
-            this._Name = _Name;
-            this._ClassId = _ClassId;
+            _Name = Name;
+            _ClassId = ClassId;
         }
     }
 }
